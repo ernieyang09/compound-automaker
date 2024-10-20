@@ -1,0 +1,25 @@
+{
+  "name": "compound-automaker",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "typechain": "typechain --target=ethers-v6 --node16-modules --out-dir=src/types './src/abi/*.json'"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "ethers": "^6.13.4",
+    "lodash": "^4.17.21",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@typechain/ethers-v6": "^0.5.1",
+    "@types/lodash": "^4.17.12",
+    "@types/yargs": "^17.0.33",
+    "typechain": "^8.3.2"
+  }
+}
