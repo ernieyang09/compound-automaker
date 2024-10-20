@@ -1,4 +1,4 @@
-import { provider, wallet } from "@/web3";
+import { provider } from "@/web3";
 import Multi from "@/contracts/multi";
 import { chunk, flatten } from "lodash";
 import { BaseContract } from "ethers";

@@ -5,6 +5,8 @@ import SwapRouter from "@/contracts/swapRouter";
 import StakeVault from "@/contracts/stakeVault";
 import StackVault from "@/contracts/stackVault";
 import QuoterV2 from "@/contracts/quoterV2";
+import LiquidBox from "@/contracts/liquidBox";
+import LiquidBoxManager from "@/contracts/liquidBoxManager";
 
 import { wallet } from "@/web3";
 import { getPools } from "@/ultis/pools";
@@ -79,14 +81,28 @@ export const stake = async () => {
   const token2 = ERC20(process.env.TOKEN2_ADDR!, wallet);
   const quoterV2 = QuoterV2(wallet);
   const swapRouter = SwapRouter(wallet);
+  const liquidBox = LiquidBox(wallet);
+  const liquidBoxManager = LiquidBoxManager(wallet);
 
   // unstake lp
   console.log("unstake lp");
   const amount = await gauge.balanceOf(wallet.address);
   const reward = await gauge.collectReward();
-  const withdrawTx = await gauge.withdraw(amount);
+  const unstakeTx = await gauge.withdraw(amount);
 
-  await Promise.all([reward.wait, withdrawTx.wait]);
+  await Promise.all([reward.wait, unstakeTx.wait]);
+
+  // withdraw lp
+  console.log("withdraw lp");
+  const lpAmount = await liquidBox.balanceOf(wallet.address);
+  const withdrawTx = await liquidBoxManager.withdraw(
+    process.env.LIQUID_BOX_ADDR!,
+    lpAmount,
+    0,
+    0
+  );
+
+  await withdrawTx.wait();
 
   // swap
   console.log("swap");

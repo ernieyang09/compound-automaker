@@ -4,6 +4,8 @@
 export { Erc20__factory } from "./Erc20__factory.js";
 export { Erc4626Router__factory } from "./Erc4626Router__factory.js";
 export { GaugeV2__factory } from "./GaugeV2__factory.js";
+export { LiquidBox__factory } from "./LiquidBox__factory.js";
+export { LiquidBoxManager__factory } from "./LiquidBoxManager__factory.js";
 export { Multi__factory } from "./Multi__factory.js";
 export { Oracle__factory } from "./Oracle__factory.js";
 export { QuoterV2__factory } from "./QuoterV2__factory.js";
